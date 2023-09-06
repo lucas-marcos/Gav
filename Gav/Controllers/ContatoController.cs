@@ -35,6 +35,14 @@ public class ContatoController : ControllerBase
         return Ok(_mapper.Map<List<ContatoTO>>(contatos));
     }
 
+    [HttpGet, Route("{id}")]
+    public ActionResult<Contato> BuscarPorId(int id)
+    {
+        var contato = _contatoServices.BuscarPorId(id);
+
+        return Ok(_mapper.Map<ContatoTO>(contato));
+    }
+
     [HttpDelete, Route("{id}")]
     public ActionResult RemoverContato(int id)
     {

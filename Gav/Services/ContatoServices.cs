@@ -30,4 +30,9 @@ public class ContatoServices : IContatoServices
         _contatoRepository.Remover(id);
         return _contatoRepository.Salvar();
     }
+
+    public Contato BuscarPorId(int id)
+    {
+        return _contatoRepository.BuscarPorId(id);
+    }
 }
