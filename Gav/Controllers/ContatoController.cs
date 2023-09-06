@@ -34,4 +34,12 @@ public class ContatoController : ControllerBase
 
         return Ok(_mapper.Map<List<ContatoTO>>(contatos));
     }
+
+    [HttpDelete, Route("{id}")]
+    public ActionResult RemoverContato(int id)
+    {
+        var removido = _contatoServices.RemoverContato(id);
+
+        return removido > 0 ? NoContent() : NotFound();
+    }
 }

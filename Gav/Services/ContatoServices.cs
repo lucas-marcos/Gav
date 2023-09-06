@@ -24,4 +24,10 @@ public class ContatoServices : IContatoServices
     {
         return _contatoRepository.BuscarTodos().ToList();
     }
+
+    public int RemoverContato(int id)
+    {
+        _contatoRepository.Remover(id);
+        return _contatoRepository.Salvar();
+    }
 }
