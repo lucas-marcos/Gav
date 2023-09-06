@@ -8,4 +8,5 @@ public interface IContatoServices : IScoped
     List<Contato> BuscarTodos();
     int RemoverContato(int id);
     Contato BuscarPorId(int id);
+    Contato EditarContato(Contato contato, int id);
 }

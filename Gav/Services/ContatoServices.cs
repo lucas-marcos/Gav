@@ -1,3 +1,4 @@
+using Gav.Framework;
 using Gav.Models;
 using Gav.Repositories.Interfaces;
 using Gav.Services.Interfaces;
@@ -34,5 +35,18 @@ public class ContatoServices : IContatoServices
     public Contato BuscarPorId(int id)
     {
         return _contatoRepository.BuscarPorId(id);
+    }
+
+    public Contato EditarContato(Contato contatoParaEditar, int id)
+    {
+        var contato = _contatoRepository.BuscarPorId(id) ?? throw new GavException("Não foi possível encontrar o contato");
+
+        contato.SetNome(contatoParaEditar.Nome);
+        contato.SetEmail(contatoParaEditar.Email);
+        contato.SetTelefone(contatoParaEditar.Telefone);
+
+        _contatoRepository.AdicionarAtualizarSalvar(contato);
+
+        return contato;
     }
 }

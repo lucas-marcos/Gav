@@ -50,4 +50,12 @@ public class ContatoController : ControllerBase
 
         return removido > 0 ? NoContent() : NotFound();
     }
+
+    [HttpPut, Route("{id}")]
+    public ActionResult<ContatoTO> EditarContato(ContatoDTO contatoParaEditar, int id)
+    {
+        var contato  = _contatoServices.EditarContato(_mapper.Map<Contato>(contatoParaEditar), id);
+        
+        return Ok(_mapper.Map<ContatoTO>(contato));
+    }
 }
