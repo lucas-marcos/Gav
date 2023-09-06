@@ -1,4 +1,6 @@
 using AutoMapper;
+using Gav.Controllers.Filters;
+using Gav.Enums;
 using Gav.Models;
 using Gav.Models.DTO;
 using Gav.Models.TO;
@@ -20,6 +22,7 @@ public class ContatoController : ControllerBase
     }
 
     [HttpPost]
+    [CustomAuthorizationFilter(TipoRoles.Usuario)]
     public ActionResult<ContatoTO> CriarContato(ContatoDTO contato)
     {
         var contatoCadastrado = _contatoServices.CadastrarContato(_mapper.Map<Contato>(contato));
@@ -28,6 +31,7 @@ public class ContatoController : ControllerBase
     }
 
     [HttpGet]
+    [CustomAuthorizationFilter(TipoRoles.Usuario)]
     public ActionResult<List<ContatoTO>> BuscarTodos()
     {
         var contatos = _contatoServices.BuscarTodos();
@@ -35,7 +39,9 @@ public class ContatoController : ControllerBase
         return Ok(_mapper.Map<List<ContatoTO>>(contatos));
     }
 
+
     [HttpGet, Route("{id}")]
+    [CustomAuthorizationFilter(TipoRoles.Usuario)]
     public ActionResult<Contato> BuscarPorId(int id)
     {
         var contato = _contatoServices.BuscarPorId(id);
@@ -44,6 +50,7 @@ public class ContatoController : ControllerBase
     }
 
     [HttpDelete, Route("{id}")]
+    [CustomAuthorizationFilter(TipoRoles.Administrador)]
     public ActionResult RemoverContato(int id)
     {
         var removido = _contatoServices.RemoverContato(id);
@@ -52,10 +59,11 @@ public class ContatoController : ControllerBase
     }
 
     [HttpPut, Route("{id}")]
+    [CustomAuthorizationFilter(TipoRoles.Usuario)]
     public ActionResult<ContatoTO> EditarContato(ContatoDTO contatoParaEditar, int id)
     {
-        var contato  = _contatoServices.EditarContato(_mapper.Map<Contato>(contatoParaEditar), id);
-        
+        var contato = _contatoServices.EditarContato(_mapper.Map<Contato>(contatoParaEditar), id);
+
         return Ok(_mapper.Map<ContatoTO>(contato));
     }
 }

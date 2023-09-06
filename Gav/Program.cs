@@ -44,7 +44,11 @@ builder.Services.AddSingleton(mapper);
 var app = builder.Build();
 
 app.UseSwagger();
-app.UseSwaggerUI(c => { c.SwaggerEndpoint("/swagger/v1/swagger.json", "GAV Api v1"); });
+app.UseSwaggerUI(c =>
+{
+    c.SwaggerEndpoint("/swagger/v1/swagger.json", "GAV Api v1");
+    c.OAuthUsePkce();
+});
 
 app.UseCors(x => x
     .AllowAnyMethod()
