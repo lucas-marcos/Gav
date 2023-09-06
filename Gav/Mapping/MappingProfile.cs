@@ -12,5 +12,8 @@ public class MappingProfile  : Profile
         CreateMap<ApplicationUserCriarUsuarioDTO, ApplicationUser>();
         CreateMap<ApplicationUserLogarDTO, ApplicationUser>();
         CreateMap<ApplicationUser, ApplicationUserTO>();
+        
+        CreateMap<ContatoDTO, Contato>();
+        CreateMap<Contato, ContatoTO>();
     }
 }

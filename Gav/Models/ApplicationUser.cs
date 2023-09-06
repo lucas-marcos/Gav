@@ -1,6 +1,4 @@
 using System.ComponentModel.DataAnnotations.Schema;
-using Gav.Enums;
-using Gav.Framework;
 using Microsoft.AspNetCore.Identity;
 
 namespace Gav.Models;
@@ -29,5 +27,4 @@ public class ApplicationUser : IdentityUser
     }
 
     public void SetToken(string token) => Token = token;
-    public bool EhAdministrador() => Role.ToEnum<TipoRoles>() == TipoRoles.Administrador;
 }
